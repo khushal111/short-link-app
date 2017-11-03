@@ -21,7 +21,7 @@ const routes = (
   </Router>
 );
 
-// window.browserHistory = browserHistory;
+//window.browserHistory = browserHistory;
 
 //Code to Route Pages when logged in and logged out
 Tracker.autorun(() => {
