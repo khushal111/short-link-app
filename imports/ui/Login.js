@@ -15,7 +15,13 @@ export default class Login extends React.Component {
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
     Meteor.loginWithPassword({email},password,(err) =>{
-      console.log('login callback', err);
+      if(err){
+        //Can also add custom messages like
+        this.setState({error:'Unable to Login,Check Email and Password.'});
+        //this.setState({error:err.reason});
+      }else{
+        this.setState({error:''});
+      }
     });
   }
 
@@ -25,7 +31,7 @@ export default class Login extends React.Component {
       <h1>Link Minifier</h1>
 
       {this.state.error ? <p>{this.state.error}</p> : undefined}
-      <form onSubmit={this.onSubmit.bind(this)}>
+      <form onSubmit={this.onSubmit.bind(this)} noValidate>
         <input type="email" ref="email" name="email" placeholder="Email"/>
         <input type="password" ref="password" name="password" placeholder="Password"/>
         <button>Login</button>
